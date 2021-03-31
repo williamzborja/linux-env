@@ -118,11 +118,12 @@ fi
 
 # custom setting
 
-alias holbie='cd ~/holberton'
+alias holbie='cd ~/holbie'
 alias ga='git add .'
 alias gac='git add . && git commit'
 alias cd_dev='cd ~/dev'
 alias sgit='f(){ git add "$1"; git commit -m "$2"; git push -u origin master; unset -f f; }; f'
+alias emacs='emacs -nw'
 
 
 
