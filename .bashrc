@@ -118,14 +118,20 @@ fi
 
 # custom setting
 
+# alias
 alias holbie='cd ~/holbie'
 alias ga='git add .'
 alias gac='git add . && git commit'
 alias cd_dev='cd ~/dev'
 alias sgit='f(){ git add "$1"; git commit -m "$2"; git push -u origin master; unset -f f; }; f'
 alias emacs='emacs -nw'
+alias dev='cd ~/dev'
+alias linux_env='cd ~/holbie/linux-env'
+alias e='emacs -nw'
+alias install_env='sudo ~/holbie/linux-env/install.sh'
 
-
+# tmux config
+export TERM=xterm-256color
 
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
