@@ -1,15 +1,47 @@
 #!/bin/bash
-sudo apt-get update && sudo apt-get upgrade -y > /dev/null
-sudo apt-get install valgrind gcc emacs g++ build-essential make -y > /dev/null
+echo "updating ubuntu repositores..."
+sudo apt-get update > /dev/null
+echo "upgrade packages..."
+sudo apt-get upgrade -y > /dev/null
 
-rm ~/.emacs ~/.bashrc
-cp .emacs ~/.emacs
+if ! test -f '/usr/bin/gcc'; then
+    echo 'installing gcc'
+    sudo apt-get install gcc > /dev/null
+fi
+
+if ! test -f '/usr/bin/emacs'; then
+    echo 'installing emacs'
+    sudo apt-get install emacs > /dev/null
+fi
+
+if ! test -f '/usr/bin/valgrind'; then
+    echo 'installing valgrind'
+    sudo apt-get install valgrind -y > /dev/null
+fi
+
+if ! test -f '/usr/bin/make'; then
+    echo 'installing make'
+    sudo apt-get install make -y > /dev/null
+fi
+
+if ! test -f '/usr/bin/g++'; then
+    echo 'installing c++'
+    sudo apt-get install g++ -y > /dev/null
+fi
+
+sudo apt-get install build-essential -y > /dev/null
+rm ~/.emacs
 cp .bashrc ~/.bashrc
-source ~/.emacs
+cp .emacs ~/.emacs
 source ~/.bashrc
 
-git clone https://github.com/holbertonschool/Betty.git > /dev/null 
-cd ./Betty
-sudo ./install.sh > /dev/null
-cd ..
-sudo rm -r ./Betty
+if ! test -f '/usr/local/bin/betty'; then
+    echo "download betty holberton"
+    git clone https://github.com/holbertonschool/Betty.git &> /dev/null
+    cd ./Betty
+    echo "install betty"
+    sudo ./install.sh > /dev/null
+    cd ..
+    echo "clear betty download"
+    rm -rf ./Betty
+fi
