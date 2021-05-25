@@ -29,11 +29,23 @@ if ! test -f '/usr/bin/g++'; then
     sudo apt-get install g++ -y > /dev/null
 fi
 
+if ! test -f '/usr/bin/pip3'; then
+    echo 'install pip3'
+    sudo apt install python-pip3
+fi
+
+if ! test -f '/usr/bin/pep8'; then
+    echo 'install pep8'
+    sudo apt install pep8
+fi
+
+
 sudo apt-get install build-essential -y > /dev/null
 rm ~/.emacs
 cp .bashrc ~/.bashrc
 cp .emacs ~/.emacs
 source ~/.bashrc
+source ~/.emacs
 
 if ! test -f '/usr/local/bin/betty'; then
     echo "download betty holberton"
