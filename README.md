@@ -12,6 +12,8 @@ This is my autoconfigurator for environment with linux specifically Ubuntu 20.04
 | [install.sh](./install.sh)                   | script to installation of terminal env                                 |
 | [install-with-gui.sh](./install-with-gui.sh) | install programs with gui                                              |
 
+
+
 ## [install.sh](install.sh)
 this script install
 

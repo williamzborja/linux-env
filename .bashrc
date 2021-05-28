@@ -133,12 +133,23 @@ alias install_env='sudo ~/holbie/linux-env/install.sh'
 # tmux config
 export TERM=xterm-256color
 
+CBGreen="\[\033[01;32m\]"
+CBBlue="\[\033[01;34m\]"
+CBRed="\[\033[01;31m\]"
+CReset="\[\033[;00m\]"
+CBCyan="\[\033[01;36m\]"
+
 parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w\[\033[00m\] \[\033[0;32m\]$(parse_git_branch)\[\033[00m\] $ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
+
+ExitStatus()
+{
+    if [[ $? == 0 ]]; then
+        echo "$CBCyan"
+    else
+        echo "$CBRed"
+    fi
+}
+PS1="${CBGreen}┌(${CBBlue}\u${CBGreen})-[${CBGreen}\W${CBGreen}]${CReset}${CBCyan}($(parse_git_branch))\n└$(ExitStatus)${CReset}$ "
